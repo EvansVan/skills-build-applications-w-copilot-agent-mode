@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
-  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
 
   useEffect(() => {
-    fetch(apiUrl)
+    console.log('Fetching Leaderboard from:', endpoint);
+    fetch(endpoint)
       .then(res => res.json())
       .then(data => {
-        console.log('Leaderboard API endpoint:', apiUrl);
-        console.log('Fetched leaderboard:', data);
-        setLeaderboard(data.results || data);
+        const results = Array.isArray(data) ? data : data.results || [];
+        setLeaderboard(results);
+        console.log('Fetched Leaderboard:', results);
       });
-  }, [apiUrl]);
+  }, [endpoint]);
 
   return (
     <div className="card shadow mb-4">

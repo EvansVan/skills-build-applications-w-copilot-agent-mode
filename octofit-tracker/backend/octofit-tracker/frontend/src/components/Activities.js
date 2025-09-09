@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
-  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
 
   useEffect(() => {
-    fetch(apiUrl)
+    console.log('Fetching Activities from:', endpoint);
+    fetch(endpoint)
       .then(res => res.json())
       .then(data => {
-        console.log('Activities API endpoint:', apiUrl);
-        console.log('Fetched activities:', data);
-        setActivities(data.results || data);
+        const results = Array.isArray(data) ? data : data.results || [];
+        setActivities(results);
+        console.log('Fetched Activities:', results);
       });
-  }, [apiUrl]);
+  }, [endpoint]);
 
   return (
     <div className="card shadow mb-4">

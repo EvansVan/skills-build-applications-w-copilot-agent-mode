@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
 
   useEffect(() => {
-    fetch(apiUrl)
+    console.log('Fetching Users from:', endpoint);
+    fetch(endpoint)
       .then(res => res.json())
       .then(data => {
-        console.log('Users API endpoint:', apiUrl);
-        console.log('Fetched users:', data);
-        setUsers(data.results || data);
+        const results = Array.isArray(data) ? data : data.results || [];
+        setUsers(results);
+        console.log('Fetched Users:', results);
       });
-  }, [apiUrl]);
+  }, [endpoint]);
 
   return (
     <div className="card shadow mb-4">
