@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
-  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+  const endpoint = 'https://cuddly-space-waddle-q96qx5vpxxvc9qxp-8000.app.github.dev/api/teams/';
 
   useEffect(() => {
     console.log('Teams API endpoint:', endpoint);

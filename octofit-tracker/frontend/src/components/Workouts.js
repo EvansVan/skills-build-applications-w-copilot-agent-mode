@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
-  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
+  const endpoint = 'https://cuddly-space-waddle-q96qx5vpxxvc9qxp-8000.app.github.dev/api/workouts/';
 
   useEffect(() => {
   console.log('Workouts API endpoint:', endpoint);
